@@ -1,0 +1,20 @@
+{% include 'nav.html' %}
+{% block content %}
+<div style="text-align: center;">
+	
+<div style="margin-top: 50px; margin-bottom: 50px;">
+    <form action="{{ url_for('deletewatchItem', company_id = company_id ,watch_id=item.id) }}" method = 'post' style="margin-left: 350px;">
+    	<h1> Are you sure you want to delete {{item.name}}? </h1>
+        
+			<input style="width: 150px; height: 50px;" type='submit' value='delete'>
+			 <button style="width: 150px; height: 50px; margin-left: 200px; margin-bottom: 50px;"><a href ="{{ url_for('showwatch', company_id = company_id) }}"> Cancel </a></button>
+	  
+    </form>
+
+    
+    </div>
+
+
+</div>
+
+{% endblock content %}

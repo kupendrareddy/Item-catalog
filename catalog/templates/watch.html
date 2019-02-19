@@ -1,0 +1,60 @@
+{% include 'nav.html' %}
+{% block content %}
+
+
+		
+	{% with messages = get_flashed_messages() %}
+    	{% if messages %} 
+
+    	<div> 
+       		<ul style="text-align: center;font-size: 30px;">
+	        	{% for message in messages %}
+	            	<li> <strong> {{ message }} </strong> </li>
+	        	{% endfor %}
+        	</ul>
+        </div>	
+        {% endif %}
+    {% endwith %}
+
+<h1 class="text-center" style="font-size: 50px; color: black">{{ company.name }}</h1>
+
+{% if 'username' in session %}
+	<button  class="btn btn-warning mr-sm-2" style="margin: 15px;"><a href="{{url_for('newwatchItem', company_id = company.id )}}">Create New watch</a></button>
+{% endif %}
+
+
+<div class="container" style = "margin-bottom: 100px;">
+ 	<div class="row">
+  	
+		{% for i in items %}
+
+		<div class="col-lg-4 col-md-3 col-sm-6" style="margin-top: 20px;">
+		      <div class="card text-center  text-white bg-secondary" style="height: 520px; padding: 20px;">
+		        <div class="card-block">
+		          <img src="{{ i.pic1 }}" style="width: 250px; height: 250px; border: 10px solid rgba(0,0,0,0.7); border-radius: 10px;">
+		          <div class="card-title" style="font-size: 45px; margin-top: 25px;">
+		            <p>{{ i.name }}</p>
+		          </div>
+		          <div class="card-text" style="font-size: 20px; margin-top: 20px;">Description: {{ i.description }}</div>
+		          <div style="margin-top: 20px; font-size: 20px;">Price: {{i.price}}</div>
+		          {% if 'username' in session %}
+			           <div style="margin-top: 20px; margin-bottom: 20px;">
+				            <a class="gicons" style="float: left;" href = "{{ url_for('editwatchItem',watch_id=i.id,company_id=company.id)}}">
+					            <span class="glyphicon glyphicon-pencil pull-right " data-toggle="tooltip" title="Edit watch" data-placement="bottom"> </span> 
+				        	</a>
+				            <a class="gicons" style="" href = "{{ url_for('deletewatchItem', watch_id=i.id,company_id=company.id)}}">
+					            <span class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" title="Delete watch" data-placement="top"> </span> 
+					        </a>  
+				        </div>  
+		         {% endif %} 
+		        </div>
+		      </div>
+		    </div>
+		
+		{% endfor %}
+	
+	</div>
+</div>
+
+
+{% endblock content %}

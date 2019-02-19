@@ -1,0 +1,22 @@
+{% include 'nav.html' %}
+{% block content %}
+
+<h1 class="text-center" style="font-size: 50px; color: black;">New Watch Item</h1>
+
+<form action="{{ url_for('newwatchItem',company_id=company_id) }}" method = 'post' style="margin-left: 450px; margin-top: 50px;">
+
+
+	<p><span style="margin-right: 250px; font-size: 45px;">Name:</span><input style="height: 50px;" type ='text' size='30' name='name' required></p>
+	<p><span style="margin-right: 150px; font-size: 45px;">Description:</span><input style="height: 50px;" type ='text' size='30' name='description' required></p>
+	<p><span style="margin-right: 270px; font-size: 45px;">Price:</span><input style="height: 50px;" type ='text' size='30' name='price' required></p>
+	<p><span style="margin-right: 110px; font-size: 45px;">Watch Image:</span><input style="height: 50px;" type="text" size="30" name="pic1" placeholder="Paste watch url"></p>
+		
+	<div style="margin-top: 50px; margin-bottom: 50px;">
+		<input style="width: 150px; height: 50px; " type='submit' value='Create'>
+		<button style="width: 150px; height: 50px; margin-left: 300px;"><a href ="{{ url_for('showwatch',company_id = company_id) }}"> Cancel </a></button>
+	</div>
+
+
+   </form>
+
+{% endblock content %}

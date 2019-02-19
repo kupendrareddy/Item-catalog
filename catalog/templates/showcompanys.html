@@ -1,0 +1,61 @@
+{% include 'nav.html' %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul style="text-align: center; font-size: 30px;">
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+
+  	{% if 'username' in session %}
+  		<button  class="btn btn-warning mr-sm-2" style="margin: 15px;"><a href="{{ url_for('newcompany')}}">Add company</a></button>
+  	{% endif %}
+
+			
+<div class="container" style = "margin-bottom: 100px;">
+  <div class="row">
+ 
+
+ 	{% for t in company %}
+
+	    <div class="col-lg-4 col-md-3 col-sm-6" style="margin-top: 20px;">
+	    <a style="color: white;" href="{{ url_for('showwatch',company_id=t.id)}}">	
+	      <div class="card text-center  text-white bg-primary" style="height: 370px; padding: 20px;">
+	        <div class="card-block">
+	          <img src="{{ t.pic }}" style="width: 250px; height: 150px; border: 10px solid rgba(0,0,0,0.7); border-radius: 10px;">
+	          <div class="card-title" style="font-size: 45px; margin-top: 25px;">
+	            {{t.name}}
+	          </div>
+	          <div class="card-text" style="margin-top: 20px;">Description: {{ t.description }}</div>
+	          {% if 'username' in session %}
+		          <div style="margin-top: 20px; margin-bottom: 20px;">
+			            <a class="gicons" style="float: left;" href = "{{ url_for('editCompany',company_id=t.id)}}">
+				            <span class="glyphicon glyphicon-pencil pull-right " data-toggle="tooltip" title="Edit Company" data-placement="bottom"> </span> 
+			        	</a>
+			            <a class="gicons" style="" href = "{{ url_for('deleteCompany',company_id=t.id)}}">
+				            <span class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" title="Delete Company" data-placement="top"> </span> 
+			        	</a>
+			        </div>
+	         {% endif %} 
+	        </div>
+	      </div>
+	    </a>
+	    </div>
+	{% endfor %}
+
+	</div>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,19 @@
+{% include 'nav.html' %}
+{% block content %}
+	<h1 class="text-center" style="font-size: 50px; color: black;">Edit Company</h1>
+	<h3 class="text-center" style="font-size: 30px; color: black;"> {{ company.name }}</h3>
+
+<form action="{{ url_for('editCompany',company_id=company.id) }}" method = 'post' style="margin-left: 450px; margin-top: 50px;">
+
+
+	<p><span style="margin-right: 250px; font-size: 45px;">Name:</span><input style="height: 50px; padding-left: 20px;" type ='text' size='30' name='name' value="{{ company.name }}"></p>
+	<p><span style="margin-right: 150px; font-size: 45px;">Description:</span><input style="height: 50px; padding-left: 20px;" type="text" size='30' name="Description" value="{{ company.description }}"></p>
+<p><span style="margin-right: 70px; font-size: 45px;">Company Logo:</span><input style="height: 50px; padding-left: 20px;" type="text" size='30'name="pic" placeholder="Paste Logo Url"></p>
+
+<div style="margin-top: 50px; margin-bottom: 50px;">
+		<input style="width: 150px; height: 50px; " type='submit' value='Create'>
+		<button style="width: 150px; height: 50px; margin-left: 300px;"><a href ="{{ url_for('showcompanys') }}"> Cancel </a></button>
+	</div>
+
+
+{% endblock content %}
